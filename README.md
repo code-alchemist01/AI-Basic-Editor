@@ -84,10 +84,11 @@ GEMINI_MODEL=gemini-2.0-flash
 "Create Kubernetes deployment yaml"
 "Write CI/CD pipeline with GitHub Actions"
 ```
-
-<img width="1909" height="938" alt="Ekran görüntüsü 2025-10-02 224459" src="https://github.com/user-attachments/assets/d6484d07-2678-4089-a1a7-21e2e3649f58" />
+<img width="1890" height="822" alt="Ekran görüntüsü 2025-10-02 235629" src="https://github.com/user-attachments/assets/c2eb7233-24db-4b48-a49e-bb328aa1558e" />
 <img width="1895" height="892" alt="Ekran görüntüsü 2025-10-02 224708" src="https://github.com/user-attachments/assets/df8107bc-f8cd-41cb-b8ce-bfaca5069977" />
 <img width="1891" height="910" alt="Ekran görüntüsü 2025-10-02 224716" src="https://github.com/user-attachments/assets/63867e47-82fd-4436-b3b4-a710dd46f948" />
+<img width="1887" height="886" alt="Ekran görüntüsü 2025-10-02 235721" src="https://github.com/user-attachments/assets/d48611bf-6574-4ff1-8e6a-b1d496642934" />
+<img width="1873" height="885" alt="Ekran görüntüsü 2025-10-02 235812" src="https://github.com/user-attachments/assets/048c5f0e-dde9-4061-89a0-54bf95a46d63" />
 <img width="1869" height="914" alt="Ekran görüntüsü 2025-10-02 224813" src="https://github.com/user-attachments/assets/e58b972d-9488-41e5-ac38-3f273b498812" />
 <img width="1857" height="881" alt="Ekran görüntüsü 2025-10-02 224801" src="https://github.com/user-attachments/assets/e50146cf-e5c3-464f-8fe7-e68db2a3107a" />
 

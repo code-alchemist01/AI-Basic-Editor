@@ -46,22 +46,20 @@ st.markdown("""
     }
     
     .user-message {
-        background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+        background: transparent;
         padding: 1.5rem;
         border-radius: 15px;
         margin: 1rem 0;
-        border-left: 5px solid #2196f3;
-        box-shadow: 0 2px 8px rgba(33, 150, 243, 0.2);
+        border-left: 3px solid #007bff;
         animation: slideInRight 0.3s ease-out;
     }
     
     .ai-message {
-        background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+        background: transparent;
         padding: 1.5rem;
         border-radius: 15px;
         margin: 1rem 0;
-        border-left: 5px solid #9c27b0;
-        box-shadow: 0 2px 8px rgba(156, 39, 176, 0.2);
+        border-left: 3px solid #6c757d;
         animation: slideInLeft 0.3s ease-out;
     }
     
@@ -175,35 +173,6 @@ st.markdown("""
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
     }
-    
-    /* Dark theme styles */
-    .dark-theme {
-        background-color: #1a1a1a;
-        color: #ffffff;
-    }
-    
-    .dark-theme .main-header {
-        background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
-    }
-    
-    .dark-theme .chat-container {
-        background: #2d3748;
-    }
-    
-    .dark-theme .user-message {
-        background: linear-gradient(135deg, #2a4365 0%, #3182ce 100%);
-        color: white;
-    }
-    
-    .dark-theme .ai-message {
-        background: linear-gradient(135deg, #553c9a 0%, #805ad5 100%);
-        color: white;
-    }
-    
-    .dark-theme .feature-card {
-        background: #2d3748;
-        color: white;
-    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -284,9 +253,11 @@ def render_message_with_syntax_highlighting(content, message_type):
     icon = "👤" if message_type == "user" else "🤖"
     title = "Sen" if message_type == "user" else "AI Kod Editörü"
     
+    # Mesaj container'ını başlat
     st.markdown(f'<div class="{message_class}">', unsafe_allow_html=True)
     st.markdown(f'<strong>{icon} {title}:</strong>', unsafe_allow_html=True)
     
+    # İçeriği göster
     for part in parts:
         if isinstance(part, dict):
             if part['type'] == 'code':
@@ -299,20 +270,35 @@ def render_message_with_syntax_highlighting(content, message_type):
                 </div>
                 """, unsafe_allow_html=True)
                 
+                # Kod bloğunu göster
                 st.code(part['content'], language=part['language'])
                 
             elif part['type'] == 'text_with_inline_code':
-                # Inline kod parçalarını işle
-                processed_text = re.sub(r'`([^`]+)`', r'<code>\1</code>', part['content'])
-                st.markdown(processed_text, unsafe_allow_html=True)
+                # Inline kod ile metni işle
+                inline_pattern = r'`([^`]+)`'
+                text_parts = re.split(inline_pattern, part['content'])
+                
+                rendered_text = ""
+                for i, text_part in enumerate(text_parts):
+                    if i % 2 == 0:  # Normal metin
+                        rendered_text += text_part
+                    else:  # Inline kod
+                        rendered_text += f'<code style="background-color: #f1f1f1; padding: 2px 4px; border-radius: 3px;">{text_part}</code>'
+                
+                st.markdown(rendered_text, unsafe_allow_html=True)
+            else:
+                # Normal metin
+                st.markdown(part['content'])
         else:
+            # String ise direkt göster
             if part.strip():  # Boş string değilse
                 st.markdown(part)
     
+    # Mesaj container'ını kapat
     st.markdown('</div>', unsafe_allow_html=True)
 
 def initialize_session_state():
-    """Session state'i başlat"""
+    """Session state değişkenlerini başlat"""
     if 'db_manager' not in st.session_state:
         st.session_state.db_manager = None
     if 'gemini_client' not in st.session_state:
@@ -323,8 +309,6 @@ def initialize_session_state():
         st.session_state.is_connected = False
     if 'saved_api_key' not in st.session_state:
         st.session_state.saved_api_key = ''
-    if 'dark_theme' not in st.session_state:
-        st.session_state.dark_theme = False
     if 'uploaded_files' not in st.session_state:
         st.session_state.uploaded_files = []
 
@@ -340,17 +324,6 @@ def setup_database():
 
 def main():
     initialize_session_state()
-    
-    # Theme toggle
-    theme_col1, theme_col2 = st.columns([10, 1])
-    with theme_col2:
-        if st.button("🌙" if not st.session_state.dark_theme else "☀️", help="Tema değiştir"):
-            st.session_state.dark_theme = not st.session_state.dark_theme
-            st.rerun()
-    
-    # Apply dark theme class if enabled
-    if st.session_state.dark_theme:
-        st.markdown('<div class="dark-theme">', unsafe_allow_html=True)
     
     # Ana başlık
     st.markdown("""
@@ -627,8 +600,7 @@ def main():
                     "Kod yazma isteğinizi girin:",
                     value=default_value,
                     placeholder="Örnek: Python ile bir web scraper yaz, React ile todo app oluştur, SQL sorgu optimizasyonu yap...",
-                    height=100,
-                    key="user_input"
+                    height=100
                 )
                 
                 submit_button = st.form_submit_button("📤 Gönder", use_container_width=True)
@@ -823,9 +795,6 @@ def main():
     }
     </script>
     """, unsafe_allow_html=True)
-    
-    if st.session_state.dark_theme:
-        st.markdown('</div>', unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()

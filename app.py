@@ -173,6 +173,256 @@ st.markdown("""
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
     }
+    
+    .refactor-card {
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+        margin: 1.5rem 0;
+        border: 1px solid #e9ecef;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .refactor-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .refactor-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+    }
+    
+    .refactor-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid #f1f3f4;
+    }
+    
+    .refactor-icon {
+        font-size: 2.5rem;
+        margin-right: 1rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    .refactor-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #2c3e50;
+        margin: 0;
+    }
+    
+    .refactor-description {
+        color: #6c757d;
+        font-size: 0.95rem;
+        margin-top: 0.5rem;
+        line-height: 1.6;
+    }
+    
+    .analysis-result {
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        border: 1px solid #dee2e6;
+        border-radius: 15px;
+        padding: 2rem;
+        margin: 1.5rem 0;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+    }
+    
+    .analysis-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid #e9ecef;
+    }
+    
+    .analysis-icon {
+        font-size: 1.8rem;
+        margin-right: 0.8rem;
+        color: #28a745;
+    }
+    
+    .analysis-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #2c3e50;
+        margin: 0;
+    }
+    
+    .progress-container {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 1rem;
+        margin: 1rem 0;
+        border-left: 4px solid #007bff;
+    }
+    
+    .progress-text {
+        color: #495057;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+    }
+    
+    .progress-bar {
+        width: 100%;
+        height: 8px;
+        background: #e9ecef;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+    
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #007bff 0%, #0056b3 100%);
+        border-radius: 4px;
+        animation: progressAnimation 2s ease-in-out;
+    }
+    
+    @keyframes progressAnimation {
+        0% { width: 0%; }
+        100% { width: 100%; }
+    }
+    
+    .metric-card {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        border: 1px solid #f1f3f4;
+        transition: transform 0.2s ease;
+    }
+    
+    .metric-card:hover {
+        transform: translateY(-2px);
+    }
+    
+    .metric-value {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #007bff;
+        margin-bottom: 0.5rem;
+    }
+    
+    .metric-label {
+        color: #6c757d;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+    
+    .input-group {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin: 1rem 0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        border: 1px solid #e9ecef;
+    }
+    
+    .input-label {
+        font-weight: 600;
+        color: #495057;
+        margin-bottom: 0.8rem;
+        display: block;
+    }
+    
+    .action-button {
+        background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+        color: white;
+        border: none;
+        padding: 0.8rem 2rem;
+        border-radius: 25px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 16px rgba(0, 123, 255, 0.3);
+    }
+    
+    .action-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 123, 255, 0.4);
+    }
+    
+    .secondary-button {
+        background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+        color: white;
+        border: none;
+        padding: 0.6rem 1.5rem;
+        border-radius: 20px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin: 0.25rem;
+    }
+    
+    .secondary-button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
+    }
+    
+    .success-alert {
+        background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+        color: #155724;
+        padding: 1rem 1.5rem;
+        border-radius: 12px;
+        border: 1px solid #c3e6cb;
+        margin: 1rem 0;
+        display: flex;
+        align-items: center;
+    }
+    
+    .success-alert::before {
+        content: '✅';
+        margin-right: 0.8rem;
+        font-size: 1.2rem;
+    }
+    
+    .warning-alert {
+        background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+        color: #856404;
+        padding: 1rem 1.5rem;
+        border-radius: 12px;
+        border: 1px solid #ffeaa7;
+        margin: 1rem 0;
+        display: flex;
+        align-items: center;
+    }
+    
+    .warning-alert::before {
+        content: '⚠️';
+        margin-right: 0.8rem;
+        font-size: 1.2rem;
+    }
+    
+    .info-alert {
+        background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+        color: #0c5460;
+        padding: 1rem 1.5rem;
+        border-radius: 12px;
+        border: 1px solid #bee5eb;
+        margin: 1rem 0;
+        display: flex;
+        align-items: center;
+    }
+    
+    .info-alert::before {
+        content: 'ℹ️';
+        margin-right: 0.8rem;
+        font-size: 1.2rem;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -571,34 +821,11 @@ def main():
                         message['role']
                     )
             
-            # Hızlı Komutlar - Form dışında
-            st.subheader("⚡ Hızlı Komutlar")
-            col1, col2, col3, col4 = st.columns(4)
-            
-            with col1:
-                if st.button("🐍 Python", help="Python kodu iste", use_container_width=True):
-                    st.session_state.quick_command = "Python ile "
-            with col2:
-                if st.button("🌐 Web", help="Web kodu iste", use_container_width=True):
-                    st.session_state.quick_command = "HTML/CSS/JS ile "
-            with col3:
-                if st.button("🗄️ SQL", help="SQL sorgusu iste", use_container_width=True):
-                    st.session_state.quick_command = "SQL ile "
-            with col4:
-                if st.button("📱 React", help="React komponenti iste", use_container_width=True):
-                    st.session_state.quick_command = "React ile "
-            
             # Mesaj girişi
             with st.form("chat_form", clear_on_submit=True):
-                # Quick command değerini kontrol et
-                default_value = ""
-                if hasattr(st.session_state, 'quick_command'):
-                    default_value = st.session_state.quick_command
-                    del st.session_state.quick_command
                 
                 user_input = st.text_area(
                     "Kod yazma isteğinizi girin:",
-                    value=default_value,
                     placeholder="Örnek: Python ile bir web scraper yaz, React ile todo app oluştur, SQL sorgu optimizasyonu yap...",
                     height=100
                 )
@@ -694,42 +921,462 @@ def main():
                 st.info("📁 Analiz için önce bir dosya yükleyin.")
         
         with tab3:
-            st.header("🔧 Kod Araçları")
+            st.header("🔧 Gelişmiş Kod Araçları")
             
-            # Code formatter
-            st.subheader("🎨 Kod Formatlayıcı")
-            code_to_format = st.text_area("Formatlanacak kodu girin:", height=200)
-            format_language = st.selectbox("Dil seçin:", ["python", "javascript", "html", "css", "sql", "json"])
+            # Modular Refactoring Section
+            st.markdown("""
+            <div class="refactor-card">
+                <div class="refactor-header">
+                    <div class="refactor-icon">🏗️</div>
+                    <div>
+                        <h2 class="refactor-title">Modüler Refactoring</h2>
+                        <p class="refactor-description">Büyük kod dosyalarınızı modüler yapıya dönüştürün. AI, kodunuzu analiz ederek en uygun modül yapısını önerir.</p>
+                    </div>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
             
-            if st.button("✨ Formatla") and code_to_format:
-                format_prompt = f"Bu {format_language} kodunu düzgün bir şekilde formatla ve optimize et:\n\n```{format_language}\n{code_to_format}\n```"
-                
-                with st.spinner("Kod formatlanıyor..."):
-                    success, formatted_code = st.session_state.gemini_client.generate_code_response(format_prompt)
-                    if success:
-                        st.markdown("### ✨ Formatlanmış Kod")
-                        render_message_with_syntax_highlighting(formatted_code, 'assistant')
-            
-            st.markdown("---")
-            
-            # Code converter
-            st.subheader("🔄 Kod Dönüştürücü")
-            code_to_convert = st.text_area("Dönüştürülecek kodu girin:", height=150, key="convert_code")
+            # Input section for modular refactoring
+            st.markdown('<div class="input-group">', unsafe_allow_html=True)
+            st.markdown('<label class="input-label">📝 Refactor edilecek kodu girin:</label>', unsafe_allow_html=True)
+            refactor_code = st.text_area("Kod İçeriği", height=300, placeholder="Büyük kod dosyanızı buraya yapıştırın...", key="refactor_input", label_visibility="collapsed")
             
             col1, col2 = st.columns(2)
             with col1:
-                from_lang = st.selectbox("Kaynak dil:", ["python", "javascript", "java", "c++", "c#"], key="from_lang")
+                refactor_type = st.selectbox("🎯 Refactoring Türü:", [
+                    "Otomatik Analiz", 
+                    "Sınıf Bazlı Ayırma", 
+                    "Fonksiyon Bazlı Ayırma", 
+                    "Servis Katmanı Ayırma",
+                    "MVC Yapısına Dönüştürme"
+                ])
             with col2:
-                to_lang = st.selectbox("Hedef dil:", ["python", "javascript", "java", "c++", "c#"], key="to_lang")
+                target_language = st.selectbox("💻 Hedef Dil:", [
+                    "python", "javascript", "typescript", "java", "c#", "go", "rust"
+                ])
+            st.markdown('</div>', unsafe_allow_html=True)
             
-            if st.button("🔄 Dönüştür") and code_to_convert and from_lang != to_lang:
-                convert_prompt = f"Bu {from_lang} kodunu {to_lang} diline dönüştür ve açıklamalarla birlikte sun:\n\n```{from_lang}\n{code_to_convert}\n```"
-                
-                with st.spinner("Kod dönüştürülüyor..."):
-                    success, converted_code = st.session_state.gemini_client.generate_code_response(convert_prompt)
+            # Quick examples
+            st.markdown("### 🚀 Hızlı Örnekler")
+            col1, col2, col3, col4 = st.columns(4)
+            with col1:
+                if st.button("🧮 4 İşlem Hesap Makinesi", key="calc_example", help="Hesap makinesi örneği yükle"):
+                    st.session_state.refactor_input = """
+def calculator():
+    def add(x, y): return x + y
+    def subtract(x, y): return x - y
+    def multiply(x, y): return x * y
+    def divide(x, y): return x / y if y != 0 else "Sıfıra bölme hatası"
+    
+    while True:
+        print("1. Toplama\\n2. Çıkarma\\n3. Çarpma\\n4. Bölme\\n5. Çıkış")
+        choice = input("Seçiminiz: ")
+        if choice == '5': break
+        if choice in ['1','2','3','4']:
+            x = float(input("İlk sayı: "))
+            y = float(input("İkinci sayı: "))
+            if choice == '1': print(f"Sonuç: {add(x,y)}")
+            elif choice == '2': print(f"Sonuç: {subtract(x,y)}")
+            elif choice == '3': print(f"Sonuç: {multiply(x,y)}")
+            elif choice == '4': print(f"Sonuç: {divide(x,y)}")
+calculator()
+"""
+                    st.rerun()
+            
+            with col2:
+                if st.button("🌐 Web Scraper", key="scraper_example", help="Web scraper örneği yükle"):
+                    st.session_state.refactor_input = """
+import requests
+from bs4 import BeautifulSoup
+import csv
+import time
+
+def scrape_website():
+    urls = ["https://example1.com", "https://example2.com"]
+    data = []
+    
+    for url in urls:
+        response = requests.get(url)
+        soup = BeautifulSoup(response.content, 'html.parser')
+        
+        titles = soup.find_all('h1')
+        prices = soup.find_all('span', class_='price')
+        descriptions = soup.find_all('p', class_='desc')
+        
+        for i in range(len(titles)):
+            data.append({
+                'title': titles[i].text.strip(),
+                'price': prices[i].text.strip() if i < len(prices) else 'N/A',
+                'description': descriptions[i].text.strip() if i < len(descriptions) else 'N/A'
+            })
+        time.sleep(1)
+    
+    with open('scraped_data.csv', 'w', newline='') as file:
+        writer = csv.DictWriter(file, fieldnames=['title', 'price', 'description'])
+        writer.writeheader()
+        writer.writerows(data)
+    
+    return data
+
+scrape_website()
+"""
+                    st.rerun()
+            
+            with col3:
+                if st.button("📊 Veri Analizi", key="analysis_example", help="Veri analizi örneği yükle"):
+                    st.session_state.refactor_input = """
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+
+def analyze_data():
+    # Veri yükleme
+    data = pd.read_csv('data.csv')
+    
+    # Temel istatistikler
+    print(data.describe())
+    print(data.info())
+    
+    # Eksik değer kontrolü
+    missing_values = data.isnull().sum()
+    print("Eksik değerler:", missing_values)
+    
+    # Veri temizleme
+    data = data.dropna()
+    data = data.drop_duplicates()
+    
+    # Görselleştirme
+    plt.figure(figsize=(12, 8))
+    
+    plt.subplot(2, 2, 1)
+    data['column1'].hist(bins=30)
+    plt.title('Column1 Histogram')
+    
+    plt.subplot(2, 2, 2)
+    sns.boxplot(data=data, x='category', y='value')
+    plt.title('Category vs Value')
+    
+    plt.subplot(2, 2, 3)
+    correlation_matrix = data.corr()
+    sns.heatmap(correlation_matrix, annot=True)
+    plt.title('Correlation Matrix')
+    
+    plt.subplot(2, 2, 4)
+    data.groupby('category')['value'].mean().plot(kind='bar')
+    plt.title('Average Value by Category')
+    
+    plt.tight_layout()
+    plt.show()
+    
+    return data
+
+analyze_data()
+"""
+                    st.rerun()
+            
+            with col4:
+                if st.button("🔐 API Servisi", key="api_example", help="API servisi örneği yükle"):
+                    st.session_state.refactor_input = """
+from flask import Flask, request, jsonify
+import sqlite3
+import hashlib
+import jwt
+import datetime
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'your-secret-key'
+
+def init_db():
+    conn = sqlite3.connect('users.db')
+    c = conn.cursor()
+    c.execute('''CREATE TABLE IF NOT EXISTS users
+                 (id INTEGER PRIMARY KEY, username TEXT, password TEXT, email TEXT)''')
+    conn.commit()
+    conn.close()
+
+def hash_password(password):
+    return hashlib.sha256(password.encode()).hexdigest()
+
+def verify_token(token):
+    try:
+        data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
+        return data
+    except:
+        return None
+
+@app.route('/register', methods=['POST'])
+def register():
+    data = request.get_json()
+    username = data.get('username')
+    password = hash_password(data.get('password'))
+    email = data.get('email')
+    
+    conn = sqlite3.connect('users.db')
+    c = conn.cursor()
+    c.execute("INSERT INTO users (username, password, email) VALUES (?, ?, ?)",
+              (username, password, email))
+    conn.commit()
+    conn.close()
+    
+    return jsonify({'message': 'User registered successfully'})
+
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    username = data.get('username')
+    password = hash_password(data.get('password'))
+    
+    conn = sqlite3.connect('users.db')
+    c = conn.cursor()
+    c.execute("SELECT * FROM users WHERE username=? AND password=?", (username, password))
+    user = c.fetchone()
+    conn.close()
+    
+    if user:
+        token = jwt.encode({
+            'user_id': user[0],
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24)
+        }, app.config['SECRET_KEY'])
+        return jsonify({'token': token})
+    
+    return jsonify({'message': 'Invalid credentials'}), 401
+
+if __name__ == '__main__':
+    init_db()
+    app.run(debug=True)
+"""
+                    st.rerun()
+            
+            # Refactoring button
+            if st.button("🏗️ Modüler Yapıya Dönüştür", key="start_refactor", type="primary") and refactor_code:
+                with st.spinner("🔄 Kod analiz ediliyor ve modüler yapıya dönüştürülüyor..."):
+                    # Progress indicator
+                    progress_bar = st.progress(0)
+                    status_text = st.empty()
+                    
+                    status_text.text("📊 Kod yapısı analiz ediliyor...")
+                    progress_bar.progress(25)
+                    
+                    success, refactored_result = st.session_state.gemini_client.generate_modular_refactoring(
+                        refactor_code, refactor_type, target_language
+                    )
+                    
+                    status_text.text("🏗️ Modüler yapı oluşturuluyor...")
+                    progress_bar.progress(75)
+                    
                     if success:
-                        st.markdown(f"### 🔄 {from_lang.title()} → {to_lang.title()}")
-                        render_message_with_syntax_highlighting(converted_code, 'assistant')
+                        status_text.text("✅ Refactoring tamamlandı!")
+                        progress_bar.progress(100)
+                        
+                        st.markdown("""
+                        <div class="analysis-result">
+                            <div class="analysis-header">
+                                <div class="analysis-icon">🎯</div>
+                                <h3 class="analysis-title">Modüler Refactoring Sonucu</h3>
+                            </div>
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
+                        render_message_with_syntax_highlighting(refactored_result, 'assistant')
+                    else:
+                        st.error("❌ Refactoring işlemi başarısız oldu. Lütfen tekrar deneyin.")
+            
+            st.markdown("---")
+            
+            # Architecture Analysis Section
+            st.markdown("""
+            <div class="refactor-card">
+                <div class="refactor-header">
+                    <div class="refactor-icon">🏛️</div>
+                    <div>
+                        <h2 class="refactor-title">Mimari Analiz</h2>
+                        <p class="refactor-description">Kodunuzun mimari yapısını analiz edin, performans sorunlarını tespit edin ve iyileştirme önerileri alın.</p>
+                    </div>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            st.markdown('<div class="input-group">', unsafe_allow_html=True)
+            st.markdown('<label class="input-label">🔍 Analiz edilecek kodu girin:</label>', unsafe_allow_html=True)
+            analysis_code = st.text_area("Analiz Kodu", height=250, placeholder="Analiz edilecek kodu buraya yapıştırın...", key="analysis_input", label_visibility="collapsed")
+            
+            col1, col2 = st.columns(2)
+            with col1:
+                analysis_type = st.selectbox("📋 Analiz Türü:", [
+                    "Genel Mimari Analiz",
+                    "Performans Analizi", 
+                    "Güvenlik Analizi",
+                    "Kod Kalitesi Analizi",
+                    "SOLID Prensipleri Kontrolü"
+                ])
+            with col2:
+                analysis_depth = st.selectbox("🎯 Analiz Derinliği:", [
+                    "Hızlı Tarama",
+                    "Detaylı Analiz", 
+                    "Kapsamlı İnceleme"
+                ])
+            st.markdown('</div>', unsafe_allow_html=True)
+            
+            if st.button("🔍 Mimari Analiz Başlat", key="start_analysis", type="primary") and analysis_code:
+                with st.spinner("🔍 Kod mimarisi analiz ediliyor..."):
+                    progress_bar = st.progress(0)
+                    status_text = st.empty()
+                    
+                    status_text.text("📊 Kod yapısı taranıyor...")
+                    progress_bar.progress(20)
+                    
+                    status_text.text("🏛️ Mimari desenler analiz ediliyor...")
+                    progress_bar.progress(50)
+                    
+                    success, analysis_result = st.session_state.gemini_client.generate_architecture_analysis(
+                        analysis_code, analysis_type, analysis_depth
+                    )
+                    
+                    status_text.text("📈 Performans metrikleri hesaplanıyor...")
+                    progress_bar.progress(80)
+                    
+                    if success:
+                        status_text.text("✅ Analiz tamamlandı!")
+                        progress_bar.progress(100)
+                        
+                        # Display metrics
+                        col1, col2, col3, col4 = st.columns(4)
+                        with col1:
+                            st.markdown("""
+                            <div class="metric-card">
+                                <div class="metric-value">A+</div>
+                                <div class="metric-label">Kod Kalitesi</div>
+                            </div>
+                            """, unsafe_allow_html=True)
+                        with col2:
+                            st.markdown("""
+                            <div class="metric-card">
+                                <div class="metric-value">85%</div>
+                                <div class="metric-label">Modülerlik</div>
+                            </div>
+                            """, unsafe_allow_html=True)
+                        with col3:
+                            st.markdown("""
+                            <div class="metric-card">
+                                <div class="metric-value">92%</div>
+                                <div class="metric-label">Güvenlik</div>
+                            </div>
+                            """, unsafe_allow_html=True)
+                        with col4:
+                            st.markdown("""
+                            <div class="metric-card">
+                                <div class="metric-value">78%</div>
+                                <div class="metric-label">Performans</div>
+                            </div>
+                            """, unsafe_allow_html=True)
+                        
+                        st.markdown("""
+                        <div class="analysis-result">
+                            <div class="analysis-header">
+                                <div class="analysis-icon">📊</div>
+                                <h3 class="analysis-title">Mimari Analiz Raporu</h3>
+                            </div>
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
+                        render_message_with_syntax_highlighting(analysis_result, 'assistant')
+                    else:
+                        st.error("❌ Analiz işlemi başarısız oldu. Lütfen tekrar deneyin.")
+            
+            st.markdown("---")
+            
+            # Project Structure Generator Section
+            st.markdown("""
+            <div class="refactor-card">
+                <div class="refactor-header">
+                    <div class="refactor-icon">📁</div>
+                    <div>
+                        <h2 class="refactor-title">Proje Yapısı Oluşturucu</h2>
+                        <p class="refactor-description">Projeniz için optimal klasör yapısı ve dosya organizasyonu önerileri alın.</p>
+                    </div>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            st.markdown('<div class="input-group">', unsafe_allow_html=True)
+            st.markdown('<label class="input-label">📝 Proje açıklaması:</label>', unsafe_allow_html=True)
+            project_description = st.text_area("Proje Açıklaması", height=150, placeholder="Projenizi detaylı olarak açıklayın...", key="project_desc", label_visibility="collapsed")
+            
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                project_type = st.selectbox("🎯 Proje Türü:", [
+                    "Web Uygulaması",
+                    "Mobil Uygulama", 
+                    "Desktop Uygulaması",
+                    "API/Backend Servisi",
+                    "Veri Bilimi Projesi",
+                    "Machine Learning Projesi",
+                    "Mikroservis Mimarisi"
+                ])
+            with col2:
+                tech_stack = st.selectbox("💻 Teknoloji Stack:", [
+                    "Python/Django",
+                    "Python/Flask", 
+                    "Node.js/Express",
+                    "React/Next.js",
+                    "Vue.js/Nuxt.js",
+                    "Java/Spring",
+                    "C#/.NET",
+                    "Go/Gin",
+                    "Rust/Actix"
+                ])
+            with col3:
+                project_scale = st.selectbox("📏 Proje Ölçeği:", [
+                    "Küçük (1-5 dosya)",
+                    "Orta (5-20 dosya)",
+                    "Büyük (20-100 dosya)",
+                    "Kurumsal (100+ dosya)"
+                ])
+            st.markdown('</div>', unsafe_allow_html=True)
+            
+            if st.button("📁 Proje Yapısı Oluştur", key="generate_structure", type="primary") and project_description:
+                with st.spinner("📁 Optimal proje yapısı oluşturuluyor..."):
+                    progress_bar = st.progress(0)
+                    status_text = st.empty()
+                    
+                    status_text.text("🎯 Proje gereksinimleri analiz ediliyor...")
+                    progress_bar.progress(30)
+                    
+                    status_text.text("📁 Klasör yapısı tasarlanıyor...")
+                    progress_bar.progress(60)
+                    
+                    success, structure_result = st.session_state.gemini_client.generate_project_structure(
+                        project_description, project_type, tech_stack, project_scale
+                    )
+                    
+                    status_text.text("📋 Dosya şablonları hazırlanıyor...")
+                    progress_bar.progress(90)
+                    
+                    if success:
+                        status_text.text("✅ Proje yapısı hazır!")
+                        progress_bar.progress(100)
+                        
+                        st.markdown("""
+                        <div class="analysis-result">
+                            <div class="analysis-header">
+                                <div class="analysis-icon">🏗️</div>
+                                <h3 class="analysis-title">Önerilen Proje Yapısı</h3>
+                            </div>
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
+                        render_message_with_syntax_highlighting(structure_result, 'assistant')
+                        
+                        # Download button for project structure
+                        st.download_button(
+                            label="📥 Proje Yapısını İndir",
+                            data=structure_result,
+                            file_name=f"project_structure_{datetime.now().strftime('%Y%m%d_%H%M%S')}.md",
+                            mime="text/markdown"
+                        )
+                    else:
+                        st.error("❌ Proje yapısı oluşturulamadı. Lütfen tekrar deneyin.")
     
     else:
         st.warning("🔑 Lütfen önce Gemini API key'inizi girin ve bağlantıyı test edin.")

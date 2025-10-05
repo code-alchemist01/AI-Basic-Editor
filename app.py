@@ -806,7 +806,7 @@ def main():
     # Ana chat arayüzü
     if st.session_state.is_connected:
         # Tabs for different features
-        tab1, tab2, tab3 = st.tabs(["💬 Chat", "📁 Dosya Analizi", "🔧 Kod Araçları"])
+        tab1, tab2, tab3, tab4 = st.tabs(["💬 Chat", "📁 Dosya Analizi", "🔧 Kod Araçları", "🐛 Hata Analizi"])
         
         with tab1:
             st.header("💬 Chat Arayüzü")
@@ -929,12 +929,13 @@ Kod dosyası:
 ```
 
 Lütfen teknik jargon kullanmak yerine anlaşılır açıklamalar yap ve markdown formatında düzenli bir dokümantasyon oluştur."""
-                            
+
                             with st.spinner("Dokümantasyon oluşturuluyor..."):
                                 success, documentation = st.session_state.gemini_client.generate_code_response(doc_prompt)
                                 if success:
                                     st.markdown("### 📚 Dokümantasyon")
-                                    render_message_with_syntax_highlighting(documentation, 'assistant')
+                                    # Dokümantasyon için özel görüntüleme - JSON formatını önlemek için direkt markdown kullan
+                                    st.markdown(documentation)
                         
                         if st.button("🔧 Refactoring Önerileri"):
                             refactor_prompt = f"Bu {file_info['name']} dosyası için refactoring önerileri ve iyileştirilmiş kod versiyonu sun:\n\n```\n{file_info['content']}\n```"
@@ -1404,6 +1405,98 @@ if __name__ == '__main__':
                         )
                     else:
                         st.error("❌ Proje yapısı oluşturulamadı. Lütfen tekrar deneyin.")
+        
+        with tab4:
+            st.header("🐛 Hata Analizi")
+            
+            # Error Analysis Card
+            st.markdown("""
+            <div class="refactor-card">
+                <div class="refactor-header">
+                    <div class="refactor-icon">🐛</div>
+                    <div>
+                        <h3 class="refactor-title">Hata Analizi ve Çözüm Önerileri</h3>
+                        <p class="refactor-description">Kodunuzdaki hataları analiz edin ve çözüm önerileri alın</p>
+                    </div>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            # Code input section
+            st.subheader("📝 Kod Girişi")
+            error_code = st.text_area(
+                "Hata içeren kodu buraya yapıştırın:",
+                height=200,
+                placeholder="def example_function():\n    # Hatalı kodunuzu buraya yapıştırın\n    pass",
+                key="error_code_input"
+            )
+            
+            # Error message input
+            st.subheader("⚠️ Hata Mesajı")
+            error_message = st.text_area(
+                "Aldığınız hata mesajını buraya yapıştırın:",
+                height=100,
+                placeholder="Traceback (most recent call last):\n  File \"example.py\", line 1, in <module>\n    # Hata mesajınızı buraya yapıştırın",
+                key="error_message_input"
+            )
+            
+            # Programming language selection
+            col1, col2 = st.columns(2)
+            with col1:
+                programming_language = st.selectbox("💻 Programlama Dili:", [
+                    "auto", "Python", "JavaScript", "Java", "C++", "C#", "PHP", "Ruby", "Go", "Rust", "TypeScript"
+                ], key="error_lang_select")
+            
+            # Analysis button
+            if st.button("🔍 Hata Analizi Yap", key="start_error_analysis", type="primary") and error_code and error_message:
+                with st.spinner("🔄 Hata analiz ediliyor..."):
+                    # Progress indicator
+                    progress_bar = st.progress(0)
+                    status_text = st.empty()
+                    
+                    status_text.text("🔍 Hata inceleniyor...")
+                    progress_bar.progress(25)
+                    
+                    success, analysis_result = st.session_state.gemini_client.generate_error_analysis(
+                        error_code, error_message, programming_language
+                    )
+                    
+                    status_text.text("🛠️ Çözüm önerileri hazırlanıyor...")
+                    progress_bar.progress(75)
+                    
+                    if success:
+                        status_text.text("✅ Analiz tamamlandı!")
+                        progress_bar.progress(100)
+                        
+                        st.markdown("""
+                        <div class="analysis-result">
+                            <div class="analysis-header">
+                                <div class="analysis-icon">🔍</div>
+                                <h3 class="analysis-title">Hata Analizi Sonucu</h3>
+                            </div>
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
+                        # Display analysis result
+                        st.markdown(analysis_result)
+                        
+                        # Download button
+                        st.download_button(
+                            label="📥 Analiz Raporunu İndir",
+                            data=analysis_result,
+                            file_name=f"error_analysis_{datetime.now().strftime('%Y%m%d_%H%M%S')}.md",
+                            mime="text/markdown"
+                        )
+                    else:
+                        status_text.text("❌ Analiz başarısız!")
+                        progress_bar.progress(0)
+                        st.error(f"❌ Hata analizi yapılamadı: {analysis_result}")
+            
+            elif st.button("🔍 Hata Analizi Yap", key="start_error_analysis_disabled", type="primary"):
+                if not error_code:
+                    st.warning("⚠️ Lütfen hata içeren kodu girin.")
+                if not error_message:
+                    st.warning("⚠️ Lütfen hata mesajını girin.")
     
     else:
         st.warning("🔑 Lütfen önce Gemini API key'inizi girin ve bağlantıyı test edin.")

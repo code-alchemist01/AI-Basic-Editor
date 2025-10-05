@@ -387,3 +387,63 @@ Bu proje için optimal yapıyı tasarla. Sadece klasör yapısını göster, ba�
             return True, response.text
         except Exception as e:
             return False, f"Proje yapısı oluşturma hatası: {e}"
+    
+    def generate_error_analysis(self, code_content, error_message, programming_language="auto"):
+        """Hata analizi ve çözüm önerileri oluştur"""
+        
+        error_analysis_prompt = f"""
+Sen deneyimli bir yazılım geliştirici ve hata ayıklama uzmanısın. Verilen kod ve hata mesajını analiz ederek kapsamlı bir hata analizi raporu hazırla.
+
+YAKLAŞIMIN:
+- Anlaşılır ve pratik açıklamalar yap
+- Teknik terimleri açıkla
+- Adım adım çözüm önerileri sun
+- Benzer hataları önleme yollarını belirt
+
+KOD:
+```
+{code_content}
+```
+
+HATA MESAJI:
+{error_message}
+
+PROGRAMLAMA DİLİ: {programming_language}
+
+Lütfen aşağıdaki formatta bir analiz raporu hazırla:
+
+## 🔍 HATA ANALİZİ RAPORU
+
+### 📋 Hata Özeti
+- **Hata Türü:** [Hata kategorisi]
+- **Önem Derecesi:** [Kritik/Yüksek/Orta/Düşük]
+- **Etkilenen Alan:** [Hangi kod bölümü]
+
+### 🎯 Olası Nedenler
+1. **Ana Neden:** [En olası sebep]
+2. **İkincil Nedenler:** [Diğer olasılıklar]
+3. **Çevresel Faktörler:** [Sistem, kütüphane versiyonları vb.]
+
+### 🛠️ Çözüm Adımları
+1. **Hızlı Çözüm:** [Acil durum için]
+2. **Kalıcı Çözüm:** [Uzun vadeli]
+3. **Test Etme:** [Çözümü doğrulama]
+
+### 💡 Önleme Önerileri
+- **Kod Kalitesi:** [İyi pratikler]
+- **Test Stratejisi:** [Nasıl test edilmeli]
+- **Monitoring:** [İzleme önerileri]
+
+### 🔧 Örnek Düzeltme
+[Gerekirse minimal kod örneği]
+
+### 📚 Ek Kaynaklar
+- **Dokümantasyon:** [İlgili kaynaklar]
+- **Benzer Durumlar:** [Yaygın hatalar]
+"""
+        
+        try:
+            response = self.model.generate_content(error_analysis_prompt)
+            return True, response.text
+        except Exception as e:
+            return False, f"Hata analizi hatası: {e}"
